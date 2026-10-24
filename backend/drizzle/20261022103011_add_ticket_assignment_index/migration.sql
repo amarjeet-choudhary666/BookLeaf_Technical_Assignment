@@ -1,0 +1,1 @@
+CREATE INDEX "tickets_assigned_to_idx" ON "tickets" ("assigned_to");

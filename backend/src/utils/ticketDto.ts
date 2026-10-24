@@ -1,0 +1,72 @@
+export function toAuthorTicket<T extends Record<string, unknown>>(ticket: T) {
+  const {
+    id,
+    ticketNumber,
+    authorId: _authorId,
+    bookId,
+    subject,
+    description,
+    status,
+    category,
+    priority,
+    createdAt,
+    updatedAt,
+    resolvedAt,
+  } = ticket;
+  return {
+    id,
+    ticketNumber,
+    bookId,
+    subject,
+    description,
+    status,
+    category,
+    priority,
+    createdAt,
+    updatedAt,
+    resolvedAt,
+  };
+}
+
+export function toAdminTicket<T extends Record<string, unknown>>(ticket: T) {
+  const {
+    id,
+    ticketNumber,
+    authorId,
+    bookId,
+    subject,
+    description,
+    status,
+    category,
+    priority,
+    aiCategory,
+    aiPriority,
+    aiReason,
+    aiDraftResponse,
+    assignedTo,
+    attachmentName,
+    createdAt,
+    updatedAt,
+    resolvedAt,
+  } = ticket;
+  return {
+    id,
+    ticketNumber,
+    authorId,
+    bookId,
+    subject,
+    description,
+    status,
+    category,
+    priority,
+    aiCategory,
+    aiPriority,
+    aiReason,
+    aiDraftResponse,
+    assignedTo,
+    attachmentName,
+    createdAt,
+    updatedAt,
+    resolvedAt,
+  };
+}
