@@ -1,0 +1,410 @@
+{
+  "authors": [
+    {
+      "authorId": "AUTH-001",
+      "name": "Avery Stone",
+      "email": "avery.stone@example.test",
+      "phone": "+1-555-0101",
+      "city": "Portland",
+      "joinedDate": "2024-01-15",
+      "books": [
+        {
+          "bookId": "BOOK-001",
+          "title": "The Glass Orchard",
+          "isbn": "ISBN-DEMO-001",
+          "genre": "Literary Fiction",
+          "publicationDate": "2024-03-10",
+          "status": "Published",
+          "mrp": "399.00",
+          "authorRoyaltyPerCopy": "39.90",
+          "totalCopiesSold": 820,
+          "totalRoyaltyEarned": "32718.00",
+          "royaltyPaid": "25000.00",
+          "royaltyPending": "7718.00",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        },
+        {
+          "bookId": "BOOK-002",
+          "title": "A Map of Quiet Places",
+          "isbn": "ISBN-DEMO-002",
+          "genre": "Contemporary Fiction",
+          "publicationDate": "2025-06-01",
+          "status": "Published",
+          "mrp": "449.00",
+          "authorRoyaltyPerCopy": "44.90",
+          "totalCopiesSold": 410,
+          "totalRoyaltyEarned": "18409.00",
+          "royaltyPaid": "10000.00",
+          "royaltyPending": "8409.00",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-002",
+      "name": "Mira Patel",
+      "email": "mira.patel@example.test",
+      "phone": "+1-555-0102",
+      "city": "Austin",
+      "joinedDate": "2024-02-20",
+      "books": [
+        {
+          "bookId": "BOOK-003",
+          "title": "Small Worlds, Wide Skies",
+          "isbn": "ISBN-DEMO-003",
+          "genre": "Science Fiction",
+          "publicationDate": "2024-08-12",
+          "status": "Published",
+          "mrp": "499.00",
+          "authorRoyaltyPerCopy": "49.90",
+          "totalCopiesSold": 1260,
+          "totalRoyaltyEarned": "62874.00",
+          "royaltyPaid": "50000.00",
+          "royaltyPending": "12874.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        },
+        {
+          "bookId": "BOOK-004",
+          "title": "The Last Signal",
+          "isbn": "ISBN-DEMO-004",
+          "genre": "Science Fiction",
+          "publicationDate": "2025-11-05",
+          "status": "In Production",
+          "mrp": "525.00",
+          "authorRoyaltyPerCopy": "52.50",
+          "totalCopiesSold": 0,
+          "totalRoyaltyEarned": "0.00",
+          "royaltyPaid": "0.00",
+          "royaltyPending": "0.00",
+          "lastRoyaltyPayoutDate": null,
+          "printPartner": "Demo Print House",
+          "availableOn": []
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-003",
+      "name": "Jordan Ellis",
+      "email": "jordan.ellis@example.test",
+      "phone": "+1-555-0103",
+      "city": "Denver",
+      "joinedDate": "2024-04-02",
+      "books": [
+        {
+          "bookId": "BOOK-005",
+          "title": "Field Notes from Elsewhere",
+          "isbn": "ISBN-DEMO-005",
+          "genre": "Travel",
+          "publicationDate": "2023-09-18",
+          "status": "Published",
+          "mrp": "349.00",
+          "authorRoyaltyPerCopy": "34.90",
+          "totalCopiesSold": 640,
+          "totalRoyaltyEarned": "22336.00",
+          "royaltyPaid": "18000.00",
+          "royaltyPending": "4336.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        },
+        {
+          "bookId": "BOOK-006",
+          "title": "The Long Way Home",
+          "isbn": "ISBN-DEMO-006",
+          "genre": "Memoir",
+          "publicationDate": "2025-02-14",
+          "status": "Published",
+          "mrp": "425.00",
+          "authorRoyaltyPerCopy": "42.50",
+          "totalCopiesSold": 285,
+          "totalRoyaltyEarned": "12112.50",
+          "royaltyPaid": "7000.00",
+          "royaltyPending": "5112.50",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-004",
+      "name": "Samira Okafor",
+      "email": "samira.okafor@example.test",
+      "phone": "+1-555-0104",
+      "city": "Atlanta",
+      "joinedDate": "2024-05-11",
+      "books": [
+        {
+          "bookId": "BOOK-007",
+          "title": "The Everyday Table",
+          "isbn": "ISBN-DEMO-007",
+          "genre": "Food and Cooking",
+          "publicationDate": "2024-10-01",
+          "status": "Published",
+          "mrp": "599.00",
+          "authorRoyaltyPerCopy": "59.90",
+          "totalCopiesSold": 930,
+          "totalRoyaltyEarned": "55707.00",
+          "royaltyPaid": "40000.00",
+          "royaltyPending": "15707.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        },
+        {
+          "bookId": "BOOK-008",
+          "title": "Gathered Here",
+          "isbn": "ISBN-DEMO-008",
+          "genre": "Food and Cooking",
+          "publicationDate": "2026-01-20",
+          "status": "In Production",
+          "mrp": "625.00",
+          "authorRoyaltyPerCopy": "62.50",
+          "totalCopiesSold": 0,
+          "totalRoyaltyEarned": "0.00",
+          "royaltyPaid": "0.00",
+          "royaltyPending": "0.00",
+          "lastRoyaltyPayoutDate": null,
+          "printPartner": "Demo Print House",
+          "availableOn": []
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-005",
+      "name": "Theo Bennett",
+      "email": "theo.bennett@example.test",
+      "phone": "+1-555-0105",
+      "city": "Chicago",
+      "joinedDate": "2024-06-30",
+      "books": [
+        {
+          "bookId": "BOOK-009",
+          "title": "Practical Patterns",
+          "isbn": "ISBN-DEMO-009",
+          "genre": "Technology",
+          "publicationDate": "2024-11-12",
+          "status": "Published",
+          "mrp": "549.00",
+          "authorRoyaltyPerCopy": "54.90",
+          "totalCopiesSold": 1520,
+          "totalRoyaltyEarned": "83448.00",
+          "royaltyPaid": "65000.00",
+          "royaltyPending": "18448.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        },
+        {
+          "bookId": "BOOK-010",
+          "title": "Systems That Scale",
+          "isbn": "ISBN-DEMO-010",
+          "genre": "Technology",
+          "publicationDate": "2025-08-22",
+          "status": "Published",
+          "mrp": "575.00",
+          "authorRoyaltyPerCopy": "57.50",
+          "totalCopiesSold": 375,
+          "totalRoyaltyEarned": "21562.50",
+          "royaltyPaid": "15000.00",
+          "royaltyPending": "6562.50",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-006",
+      "name": "Lena Brooks",
+      "email": "lena.brooks@example.test",
+      "phone": "+1-555-0106",
+      "city": "Seattle",
+      "joinedDate": "2024-08-09",
+      "books": [
+        {
+          "bookId": "BOOK-011",
+          "title": "Gardens for Every Season",
+          "isbn": "ISBN-DEMO-011",
+          "genre": "Gardening",
+          "publicationDate": "2023-04-16",
+          "status": "Published",
+          "mrp": "375.00",
+          "authorRoyaltyPerCopy": "37.50",
+          "totalCopiesSold": 710,
+          "totalRoyaltyEarned": "26625.00",
+          "royaltyPaid": "20000.00",
+          "royaltyPending": "6625.00",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        },
+        {
+          "bookId": "BOOK-012",
+          "title": "A Balcony in Bloom",
+          "isbn": "ISBN-DEMO-012",
+          "genre": "Gardening",
+          "publicationDate": "2025-04-03",
+          "status": "Published",
+          "mrp": "399.00",
+          "authorRoyaltyPerCopy": "39.90",
+          "totalCopiesSold": 248,
+          "totalRoyaltyEarned": "9895.20",
+          "royaltyPaid": "5000.00",
+          "royaltyPending": "4895.20",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-007",
+      "name": "Ravi Morgan",
+      "email": "ravi.morgan@example.test",
+      "phone": "+1-555-0107",
+      "city": "Boston",
+      "joinedDate": "2024-09-21",
+      "books": [
+        {
+          "bookId": "BOOK-013",
+          "title": "Numbers in Context",
+          "isbn": "ISBN-DEMO-013",
+          "genre": "Education",
+          "publicationDate": "2024-01-08",
+          "status": "Published",
+          "mrp": "475.00",
+          "authorRoyaltyPerCopy": "47.50",
+          "totalCopiesSold": 505,
+          "totalRoyaltyEarned": "23987.50",
+          "royaltyPaid": "18000.00",
+          "royaltyPending": "5987.50",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        },
+        {
+          "bookId": "BOOK-014",
+          "title": "Learning by Design",
+          "isbn": "ISBN-DEMO-014",
+          "genre": "Education",
+          "publicationDate": "2025-07-19",
+          "status": "Published",
+          "mrp": "499.00",
+          "authorRoyaltyPerCopy": "49.90",
+          "totalCopiesSold": 330,
+          "totalRoyaltyEarned": "16467.00",
+          "royaltyPaid": "10000.00",
+          "royaltyPending": "6467.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-008",
+      "name": "Noah Kim",
+      "email": "noah.kim@example.test",
+      "phone": "+1-555-0108",
+      "city": "San Diego",
+      "joinedDate": "2024-11-04",
+      "books": [
+        {
+          "bookId": "BOOK-015",
+          "title": "The Art of Listening",
+          "isbn": "ISBN-DEMO-015",
+          "genre": "Psychology",
+          "publicationDate": "2023-12-02",
+          "status": "Published",
+          "mrp": "425.00",
+          "authorRoyaltyPerCopy": "42.50",
+          "totalCopiesSold": 895,
+          "totalRoyaltyEarned": "38037.50",
+          "royaltyPaid": "30000.00",
+          "royaltyPending": "8037.50",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        },
+        {
+          "bookId": "BOOK-016",
+          "title": "Better Questions",
+          "isbn": "ISBN-DEMO-016",
+          "genre": "Psychology",
+          "publicationDate": "2025-09-09",
+          "status": "In Production",
+          "mrp": "449.00",
+          "authorRoyaltyPerCopy": "44.90",
+          "totalCopiesSold": 0,
+          "totalRoyaltyEarned": "0.00",
+          "royaltyPaid": "0.00",
+          "royaltyPending": "0.00",
+          "lastRoyaltyPayoutDate": null,
+          "printPartner": "Demo Print House",
+          "availableOn": []
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-009",
+      "name": "Elena Ruiz",
+      "email": "elena.ruiz@example.test",
+      "phone": "+1-555-0109",
+      "city": "Miami",
+      "joinedDate": "2025-01-17",
+      "books": [
+        {
+          "bookId": "BOOK-017",
+          "title": "Stories from the Coast",
+          "isbn": "ISBN-DEMO-017",
+          "genre": "Short Stories",
+          "publicationDate": "2025-03-25",
+          "status": "Published",
+          "mrp": "325.00",
+          "authorRoyaltyPerCopy": "32.50",
+          "totalCopiesSold": 460,
+          "totalRoyaltyEarned": "14950.00",
+          "royaltyPaid": "10000.00",
+          "royaltyPending": "4950.00",
+          "lastRoyaltyPayoutDate": "2026-03-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store"]
+        }
+      ]
+    },
+    {
+      "authorId": "AUTH-010",
+      "name": "Miles Carter",
+      "email": "miles.carter@example.test",
+      "phone": "+1-555-0110",
+      "city": "Nashville",
+      "joinedDate": "2025-03-08",
+      "books": [
+        {
+          "bookId": "BOOK-018",
+          "title": "Songs for the Open Road",
+          "isbn": "ISBN-DEMO-018",
+          "genre": "Poetry",
+          "publicationDate": "2025-05-30",
+          "status": "Published",
+          "mrp": "299.00",
+          "authorRoyaltyPerCopy": "29.90",
+          "totalCopiesSold": 215,
+          "totalRoyaltyEarned": "6428.50",
+          "royaltyPaid": "4000.00",
+          "royaltyPending": "2428.50",
+          "lastRoyaltyPayoutDate": "2025-12-15",
+          "printPartner": "Demo Print House",
+          "availableOn": ["BookLeaf Store", "Demo Books"]
+        }
+      ]
+    }
+  ]
+}

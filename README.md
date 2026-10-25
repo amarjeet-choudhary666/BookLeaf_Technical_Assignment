@@ -33,10 +33,12 @@ Edit `backend/.env` and set `DATABASE_URL` to your local PostgreSQL database.
 Replace both token secrets with different random values of at least 32
 characters. The example uses port `5000` and the database name `bookleaf`.
 
-Copy the supplied JSON attachment to `backend/data/bookleaf.json` (create the
-`data` directory if needed), or set `BOOKLEAF_DATASET` in `backend/.env` to its
-path. The seed script expects a JSON object containing `authors` and `books`
-arrays with exactly 10 authors and 18 books.
+The repository includes a synthetic development dataset at
+`backend/data/bookleaf.json`, which the seed script uses by default. To use the
+assignment's supplied JSON attachment instead, replace that file or set
+`BOOKLEAF_DATASET` in `backend/.env` to its path. The script accepts books
+nested under authors or separate top-level `authors` and `books` arrays, with
+exactly 10 authors and 18 books.
 
 From the `backend/` directory, run:
 
@@ -95,8 +97,7 @@ npm run build
 - The seed script validates the dataset size and supports common camelCase and
   snake_case field names. Dataset rows are inserted or updated by their
   original IDs.
-- The assignment brief (`BookLeaf_Technical_Assignment_1.docx`) and sample data
-  (`bookleaf_sample_data.json`) were not present in the project workspace when
-  this setup guide was written. The setup above follows the existing backend
-  configuration and seed-script requirements; place the email attachment at
-  the path noted above before seeding.
+- The assignment brief (`BookLeaf_Technical_Assignment_1.docx`) and original
+  sample data (`bookleaf_sample_data.json`) are not included in this workspace.
+  The bundled seed file is synthetic demo data; replace it or configure
+  `BOOKLEAF_DATASET` if you have the original attachment.

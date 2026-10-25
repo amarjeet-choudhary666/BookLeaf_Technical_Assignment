@@ -10,15 +10,17 @@ and relax book statistics/availability fields to preserve dataset nulls.
    database plus random JWT secrets (at least 32 characters).
 2. Install dependencies with `npm install`.
 3. Apply migrations with `npm run migrate`.
-4. Point `BOOKLEAF_DATASET` at the supplied JSON containing exactly 10 authors
-   and 18 books, then run `npm run seed`.
+4. Run `npm run seed` to use the bundled synthetic development dataset at
+   `data/bookleaf.json`. To use the assignment's supplied JSON instead, replace
+   that file or set `BOOKLEAF_DATASET` to its path. The seed script accepts
+   books nested under authors or separate top-level arrays, and expects exactly
+   10 authors and 18 books.
 5. Run `npm run dev`.
 
-The seed script refuses to run unless `NODE_ENV=development` and
-`DATABASE_URL` points to `localhost`, `127.0.0.1`, or `::1`. It upserts dataset
-rows by their original IDs and only creates the demo accounts listed below.
-The JSON file was not present in this workspace, so it must be supplied before
-seeding.
+The bundled data is synthetic and uses reserved `example.test` email addresses.
+The seed script refuses to run unless `NODE_ENV=development` and `DATABASE_URL`
+points to `localhost`, `127.0.0.1`, or `::1`. It upserts dataset rows by ID and
+only creates the demo accounts listed below.
 
 Migrations also default to local development databases. A remote development
 database requires both `ALLOW_REMOTE_MIGRATIONS=true` and an exact

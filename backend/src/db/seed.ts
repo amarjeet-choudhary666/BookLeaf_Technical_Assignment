@@ -115,17 +115,42 @@ async function loadDataset(fileName: string) {
   const absolutePath = path.resolve(process.cwd(), fileName);
   const source = JSON.parse(await readFile(absolutePath, "utf8")) as unknown;
   const root = asRow(source, "Dataset");
-  if (!Array.isArray(root.authors) || !Array.isArray(root.books)) {
-    throw new Error('Dataset must contain "authors" and "books" arrays.');
+  if (!Array.isArray(root.authors)) {
+    throw new Error('Dataset must contain an "authors" array.');
   }
-  if (root.authors.length !== 10 || root.books.length !== 18) {
+
+  const normalizedAuthors = root.authors.map(authorRecord);
+  let rawBooks: unknown[];
+
+  if (Array.isArray(root.books)) {
+    rawBooks = root.books;
+  } else {
+    rawBooks = root.authors.flatMap((authorValue, index) => {
+      const authorRow = asRow(authorValue, `Author ${index + 1}`);
+      if (!Array.isArray(authorRow.books)) {
+        throw new Error(
+          'Dataset must contain a top-level "books" array or a "books" array for each author.',
+        );
+      }
+
+      const authorId = normalizedAuthors[index].authorId;
+      return authorRow.books.map((bookValue) => {
+        const bookRow = asRow(bookValue, "Book");
+        const bookAuthorId = field(bookRow, "authorId", "author_id");
+        return bookAuthorId.present ? bookRow : { ...bookRow, author_id: authorId };
+      });
+    });
+  }
+
+  if (normalizedAuthors.length !== 10 || rawBooks.length !== 18) {
     throw new Error(
-      `Expected the supplied dataset to contain 10 authors and 18 books; found ${root.authors.length} and ${root.books.length}.`,
+      `Expected the supplied dataset to contain 10 authors and 18 books; found ${normalizedAuthors.length} and ${rawBooks.length}.`,
     );
   }
+
   return {
-    authors: root.authors.map(authorRecord),
-    books: root.books.map(bookRecord),
+    authors: normalizedAuthors,
+    books: rawBooks.map(bookRecord),
   };
 }
 
@@ -219,8 +244,7 @@ async function seedDemoAccounts() {
 
 async function main() {
   assertSafeDevelopmentDatabase();
-  const datasetPath = process.env.BOOKLEAF_DATASET;
-  if (!datasetPath) throw new Error("Set BOOKLEAF_DATASET to the supplied BookLeaf JSON file path.");
+  const datasetPath = process.env.BOOKLEAF_DATASET ?? "./data/bookleaf.json";
   const dataset = await loadDataset(datasetPath);
   await connectionDB();
   await upsertDataset(dataset);
