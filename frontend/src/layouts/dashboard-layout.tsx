@@ -1,85 +1,132 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { BookMarked, X } from "lucide-react";
+import { BookMarked } from "lucide-react";
 import { AppHeader } from "@/components/layout/app-header";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
-import { adminNav, authorNav, type NavItem } from "@/components/layout/sidebar-nav";
+import { adminNav, authorNav, type NavItem } from "@/components/layout/nav-items";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useAuthStore } from "@/stores/authStore";
 import { useUiStore } from "@/stores/uiStore";
 import { cn } from "@/lib/utils";
 
+function SidebarContent({
+  role,
+  collapsed,
+}: {
+  role: "author" | "admin" | null;
+  collapsed: boolean;
+}) {
+  const navItems: NavItem[] = role === "admin" ? adminNav : authorNav;
+
+  return (
+    <>
+      <div
+        className={cn(
+          "flex h-[76px] shrink-0 items-center border-b border-border/80",
+          collapsed ? "justify-center px-2" : "gap-3 px-5",
+        )}
+      >
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-800 text-white shadow-soft"
+          title="BookLeaf"
+        >
+          <BookMarked className="h-[19px] w-[19px]" strokeWidth={1.8} />
+        </div>
+        {!collapsed && (
+          <div className="min-w-0 leading-tight">
+            <span className="block text-[0.9375rem] font-semibold tracking-[-0.025em] text-ink">
+              BookLeaf
+            </span>
+            <span className="mt-1 block text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-muted">
+              {role === "admin" ? "Support workspace" : "Author workspace"}
+            </span>
+          </div>
+        )}
+      </div>
+      <div
+        className={cn(
+          "flex-1 overflow-y-auto py-5 scrollbar-thin",
+          collapsed ? "px-2" : "px-3",
+        )}
+      >
+        {!collapsed && (
+          <p className="mb-2 px-3 text-[0.625rem] font-semibold uppercase tracking-[0.13em] text-faint">
+            Workspace
+          </p>
+        )}
+        <SidebarNav items={navItems} collapsed={collapsed} />
+      </div>
+      <div
+        className={cn(
+          "shrink-0 border-t border-border/80 py-4",
+          collapsed ? "flex justify-center px-2" : "px-5",
+        )}
+      >
+        {!collapsed && (
+          <>
+            <p className="text-xs font-medium text-ink-2">BookLeaf Publishing</p>
+            <p className="mt-0.5 text-[0.6875rem] text-muted">
+              © {new Date().getFullYear()} · {role === "admin" ? "Support" : "Author"} portal
+            </p>
+          </>
+        )}
+      </div>
+    </>
+  );
+}
+
 export function DashboardLayout() {
   const role = useAuthStore((s) => s.role);
+  const sidebarCollapsed = useUiStore((s) => s.sidebarCollapsed);
   const mobileNavOpen = useUiStore((s) => s.mobileNavOpen);
   const setMobileNavOpen = useUiStore((s) => s.setMobileNavOpen);
   const location = useLocation();
-
-  const navItems: NavItem[] = role === "admin" ? adminNav : authorNav;
 
   useEffect(() => {
     setMobileNavOpen(false);
   }, [location.pathname, setMobileNavOpen]);
 
-  const SidebarContent = (
-    <>
-      <div className="flex items-center gap-2 px-5 py-4">
-        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-brand-600 text-white">
-          <BookMarked className="h-4.5 w-4.5" />
-        </div>
-        <div className="leading-tight">
-          <span className="block text-sm font-semibold text-ink">BookLeaf</span>
-          <span className="block text-[0.65rem] uppercase tracking-wider text-muted">
-            {role === "admin" ? "Support Portal" : "Author Portal"}
-          </span>
-        </div>
-      </div>
-      <div className="flex-1 overflow-y-auto px-3 py-2 scrollbar-thin">
-        <SidebarNav items={navItems} />
-      </div>
-      <div className="border-t border-border px-4 py-3">
-        <p className="text-[0.7rem] text-faint">
-          © {new Date().getFullYear()} BookLeaf Publishing
-        </p>
-      </div>
-    </>
-  );
-
   return (
-    <div className="min-h-screen bg-canvas">
-      {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-border bg-surface lg:flex">
-        {SidebarContent}
+    <div
+      className={cn(
+        "min-h-screen bg-canvas transition-[padding] duration-200",
+        sidebarCollapsed ? "lg:pl-[4.5rem]" : "lg:pl-60",
+      )}
+    >
+      <a
+        href="#main-content"
+        className="sr-only z-[60] rounded-lg bg-surface px-4 py-2 text-sm font-medium text-ink shadow-elevated focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to content
+      </a>
+      <aside
+        id="primary-sidebar"
+        aria-label="Primary navigation"
+        className={cn(
+          "fixed inset-y-0 left-0 z-40 hidden flex-col border-r border-border bg-surface transition-[width] duration-200 lg:flex",
+          sidebarCollapsed ? "w-[4.5rem]" : "w-60",
+        )}
+      >
+        <SidebarContent role={role} collapsed={sidebarCollapsed} />
       </aside>
 
-      {/* Mobile drawer */}
-      {mobileNavOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div
-            className="absolute inset-0 bg-ink/40 backdrop-blur-sm animate-fade-in"
-            onClick={() => setMobileNavOpen(false)}
-          />
-          <aside
-            className={cn(
-              "absolute inset-y-0 left-0 flex w-64 flex-col border-r border-border bg-surface animate-slide-up",
-            )}
-          >
-            <button
-              className="absolute right-3 top-4 text-faint transition-colors hover:text-ink"
-              onClick={() => setMobileNavOpen(false)}
-              aria-label="Close navigation menu"
-            >
-              <X className="h-4 w-4" />
-            </button>
-            {SidebarContent}
-          </aside>
-        </div>
-      )}
+      <Dialog open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+        <DialogContent
+          id="mobile-navigation"
+          className="mobile-nav-panel"
+          overlayClassName="lg:hidden"
+        >
+          <DialogTitle className="sr-only">Main navigation</DialogTitle>
+          <SidebarContent role={role} collapsed={false} />
+        </DialogContent>
+      </Dialog>
 
-      {/* Main content area */}
-      <div className="lg:pl-60">
+      <div className="min-w-0">
         <AppHeader />
-        <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-          <Outlet />
+        <main id="main-content" className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 sm:py-8 xl:px-10">
+          <div className="page-enter">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { ArrowLeft, Loader2, Paperclip } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -35,9 +35,9 @@ export function CreateTicket() {
 
   const {
     register,
+    control,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CreateTicketForm>({
     resolver: zodResolver(createTicketSchema),
@@ -48,7 +48,7 @@ export function CreateTicket() {
     },
   });
 
-  const selectedBookId = watch("bookId");
+  const selectedBookId = useWatch({ control, name: "bookId" });
 
   const onSubmit = (values: CreateTicketForm) => {
     createTicket.mutate(values, {
@@ -66,10 +66,10 @@ export function CreateTicket() {
       </Button>
 
       <div>
-        <h1 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+        <h1 className="text-2xl font-semibold tracking-[-0.035em] text-ink sm:text-[1.75rem] sm:leading-tight">
           New Support Ticket
         </h1>
-        <p className="mt-1 text-sm text-muted">
+        <p className="mt-1.5 text-sm leading-6 text-muted">
           Tell us what's going on and our team will get back to you.
         </p>
       </div>

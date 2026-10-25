@@ -15,7 +15,7 @@ export function SelectTrigger({
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        "flex h-9 w-full items-center justify-between rounded-md border border-border-strong bg-surface px-3 py-2 text-sm text-ink shadow-soft transition-colors placeholder:text-faint focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:cursor-not-allowed disabled:opacity-60 [&>span]:line-clamp-1",
+        "flex h-10 w-full items-center justify-between rounded-lg border border-border-strong bg-surface px-3 py-2 text-sm text-ink shadow-soft transition-[border-color,box-shadow] placeholder:text-faint focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15 disabled:cursor-not-allowed disabled:bg-surface-2 disabled:opacity-70 [&>span]:line-clamp-1",
         className,
       )}
       {...props}
@@ -64,7 +64,7 @@ export function SelectContent({
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-md border border-border bg-surface text-ink shadow-elevated animate-fade-in",
+          "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-surface text-ink shadow-elevated animate-fade-in",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
           className,

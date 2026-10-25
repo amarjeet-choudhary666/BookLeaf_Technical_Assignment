@@ -20,6 +20,7 @@ export function SearchInput({
       <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" />
       <Input
         type="search"
+        aria-label={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
@@ -29,8 +30,9 @@ export function SearchInput({
         <button
           type="button"
           onClick={onClear}
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-faint transition-colors hover:text-ink"
+          className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-faint transition-colors hover:bg-surface-3 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           aria-label="Clear search"
+          title="Clear search"
         >
           <X className="h-4 w-4" />
         </button>

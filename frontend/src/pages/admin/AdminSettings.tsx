@@ -8,11 +8,11 @@ export function AdminSettings() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+      <div className="border-b border-border/80 pb-5">
+        <h1 className="text-2xl font-semibold tracking-[-0.035em] text-ink sm:text-[1.75rem] sm:leading-tight">
           Admin Settings
         </h1>
-        <p className="mt-1 text-sm text-muted">
+        <p className="mt-1.5 text-sm leading-6 text-muted">
           Your administrator account information.
         </p>
       </div>

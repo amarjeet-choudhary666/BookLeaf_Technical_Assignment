@@ -71,7 +71,7 @@ export function AuthorTickets() {
       />
 
       {/* Filter bar */}
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-3 shadow-soft lg:flex-row lg:items-center lg:justify-between sm:p-4">
         <SearchInput
           value={search}
           onChange={(v) => {
@@ -179,7 +179,7 @@ export function AuthorTickets() {
           {/* Desktop table */}
           <Card className="overflow-hidden">
             <div className="hidden overflow-x-auto lg:block">
-              <table className="w-full text-sm">
+              <table className="data-table text-sm">
                 <thead>
                   <tr className="border-b border-border bg-surface-2 text-left text-xs text-muted">
                     <th className="px-4 py-3 font-medium">Ticket #</th>

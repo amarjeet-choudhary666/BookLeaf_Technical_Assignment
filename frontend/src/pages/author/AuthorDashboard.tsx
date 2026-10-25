@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StatCard } from "@/components/common/stat-card";
+import { PageHeading } from "@/components/common/page-heading";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { ErrorState } from "@/components/common/error-state";
 import { EmptyState } from "@/components/common/empty-state";
@@ -35,22 +36,18 @@ export function AuthorDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-            Welcome back, {greeting}
-          </h1>
-          <p className="mt-1 text-sm text-muted">
-            Here's an overview of your books and support activity.
-          </p>
-        </div>
-        <Button onClick={() => navigate("/author/tickets/new")}>
-          <Plus className="h-4 w-4" />
-          New Support Ticket
-        </Button>
-      </div>
+      <PageHeading
+        title={`Welcome back, ${greeting}`}
+        description="Here's an overview of your books and support activity."
+        actions={
+          <Button onClick={() => navigate("/author/tickets/new")}>
+            <Plus className="h-4 w-4" />
+            New support ticket
+          </Button>
+        }
+      />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard label="My Books" value={data?.books ?? 0} icon={BookOpen} iconColor="text-brand-700" />
         <StatCard label="Open Tickets" value={data?.openTickets ?? 0} icon={Inbox} iconColor="text-info-600" />
         <StatCard label="Total Tickets" value={data?.tickets ?? 0} icon={LifeBuoy} iconColor="text-ink-2" />
@@ -58,8 +55,8 @@ export function AuthorDashboard() {
       </div>
 
       <Card>
-        <CardHeader className="flex-row items-center justify-between">
-          <CardTitle>Recent Support Activity</CardTitle>
+        <CardHeader className="flex items-center justify-between gap-3">
+          <CardTitle>Recent support activity</CardTitle>
           <Button variant="ghost" size="sm" asChild>
             <Link to="/author/tickets">View all</Link>
           </Button>

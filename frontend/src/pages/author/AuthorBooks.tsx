@@ -24,12 +24,12 @@ export function AuthorBooks() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-b border-border/80 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+          <h1 className="text-2xl font-semibold tracking-[-0.035em] text-ink sm:text-[1.75rem] sm:leading-tight">
             My Books
           </h1>
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-1.5 text-sm leading-6 text-muted">
             Your published titles and publishing status.
           </p>
         </div>

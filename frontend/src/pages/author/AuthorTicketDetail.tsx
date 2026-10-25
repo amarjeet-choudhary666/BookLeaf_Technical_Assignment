@@ -41,7 +41,9 @@ export function AuthorTicketDetail() {
               <div className="flex items-center gap-2 text-xs text-muted">
                 <span className="font-mono">{ticket.ticketNumber}</span>
               </div>
-              <CardTitle className="text-lg">{ticket.subject}</CardTitle>
+              <h1 className="text-xl font-semibold leading-snug tracking-[-0.025em] text-ink">
+                {ticket.subject}
+              </h1>
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 <StatusBadge status={ticket.status} />
                 <PriorityBadge priority={ticket.priority} />

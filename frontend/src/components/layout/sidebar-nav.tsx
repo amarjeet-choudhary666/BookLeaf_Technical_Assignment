@@ -1,49 +1,34 @@
 import { NavLink } from "react-router-dom";
-import {
-  BookOpen,
-  LayoutDashboard,
-  LifeBuoy,
-  type LucideIcon,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { NavItem } from "@/components/layout/nav-items";
 
-export interface NavItem {
-  to: string;
-  label: string;
-  icon: LucideIcon;
-}
-
-export const authorNav: NavItem[] = [
-  { to: "/author/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/author/books", label: "My Books", icon: BookOpen },
-  { to: "/author/tickets", label: "Support Tickets", icon: LifeBuoy },
-];
-
-export const adminNav: NavItem[] = [
-  { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/admin/tickets", label: "Ticket Queue", icon: LifeBuoy },
-  { to: "/admin/authors", label: "Authors", icon: BookOpen },
-  { to: "/admin/books", label: "Books", icon: BookOpen },
-];
-
-export function SidebarNav({ items }: { items: NavItem[] }) {
+export function SidebarNav({
+  items,
+  collapsed = false,
+}: {
+  items: NavItem[];
+  collapsed?: boolean;
+}) {
   return (
-    <nav className="flex flex-col gap-0.5" aria-label="Main navigation">
+    <nav className="flex flex-col gap-1" aria-label="Main navigation">
       {items.map((item) => (
         <NavLink
           key={item.to}
           to={item.to}
+          title={collapsed ? item.label : undefined}
+          aria-label={item.label}
           className={({ isActive }) =>
             cn(
-              "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+              "relative flex min-h-10 items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-[0.8125rem] font-medium transition-[background-color,color,border-color] duration-150",
+              collapsed && "justify-center px-0",
               isActive
-                ? "bg-brand-50 text-brand-700"
-                : "text-ink-2 hover:bg-surface-2 hover:text-ink",
+                ? "border-brand-600 bg-brand-50 text-brand-800"
+                : "border-transparent text-ink-2 hover:bg-surface-2 hover:text-ink",
             )
           }
         >
-          <item.icon className="h-4 w-4 shrink-0" />
-          <span className="truncate">{item.label}</span>
+          <item.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={1.8} />
+          <span className={cn("truncate", collapsed && "sr-only")}>{item.label}</span>
         </NavLink>
       ))}
     </nav>

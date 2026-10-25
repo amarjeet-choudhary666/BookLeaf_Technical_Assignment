@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -87,7 +87,9 @@ export function AdminTicketDetail() {
                   </>
                 )}
               </div>
-              <CardTitle className="text-lg">{ticket.subject}</CardTitle>
+              <h1 className="text-xl font-semibold leading-snug tracking-[-0.025em] text-ink">
+                {ticket.subject}
+              </h1>
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 <StatusBadge status={ticket.status} />
                 <PriorityBadge priority={ticket.priority} />
@@ -106,7 +108,11 @@ export function AdminTicketDetail() {
           </Card>
 
           {/* AI Assistant */}
-          <AiAssistantSection ticketId={ticket.id} ticket={ticket} />
+          <AiAssistantSection
+            key={`${ticket.id}:${ticket.aiDraftResponse ?? ""}`}
+            ticketId={ticket.id}
+            ticket={ticket}
+          />
 
           {/* Conversation */}
           <Card>
@@ -382,11 +388,7 @@ function AiAssistantSection({
 }) {
   const classify = useClassifyTicket();
   const draft = useDraftTicket();
-  const [draftText, setDraftText] = useState("");
-
-  useEffect(() => {
-    setDraftText(ticket.aiDraftResponse ?? "");
-  }, [ticket.aiDraftResponse]);
+  const [draftText, setDraftText] = useState(ticket.aiDraftResponse ?? "");
 
   const hasClassification = !!(ticket.aiCategory || ticket.aiPriority || ticket.aiReason);
 

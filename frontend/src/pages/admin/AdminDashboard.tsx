@@ -3,10 +3,12 @@ import { formatDistanceToNow } from "date-fns";
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   Cell,
   Pie,
   PieChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -23,6 +25,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StatCard } from "@/components/common/stat-card";
+import { PageHeading } from "@/components/common/page-heading";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { ErrorState } from "@/components/common/error-state";
 import { EmptyState } from "@/components/common/empty-state";
@@ -32,10 +35,10 @@ import { STATUS_LABELS } from "@/lib/constants";
 import type { AdminTicket } from "@/types";
 
 const PIE_COLORS: Record<string, string> = {
-  open: "#10b981",
+  open: "#33895b",
   in_progress: "#3b82f6",
-  resolved: "#a3a29a",
-  closed: "#d4d2cc",
+  resolved: "#8e9a92",
+  closed: "#dce3dd",
 };
 
 export function AdminDashboard() {
@@ -60,51 +63,60 @@ export function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-            Operations Dashboard
-          </h1>
-          <p className="mt-1 text-sm text-muted">
-            Support queue overview and ticket trends.
-          </p>
-        </div>
-        <Button asChild>
-          <Link to="/admin/tickets">
-            <LifeBuoy className="h-4 w-4" />
-            Open Ticket Queue
-          </Link>
-        </Button>
-      </div>
+      <PageHeading
+        title="Operations dashboard"
+        description="A live view of support activity across BookLeaf."
+        actions={
+          <Button asChild>
+            <Link to="/admin/tickets">
+              <LifeBuoy className="h-4 w-4" />
+              Open ticket queue
+            </Link>
+          </Button>
+        }
+      />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard label="Total Tickets" value={totalTickets} icon={Inbox} iconColor="text-ink-2" />
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+        <StatCard label="Total tickets" value={totalTickets} icon={Inbox} iconColor="text-ink-2" />
         <StatCard label="Open" value={openTickets} icon={CircleDot} iconColor="text-brand-700" />
-        <StatCard label="In Progress" value={inProgress} icon={PlayCircle} iconColor="text-info-600" />
+        <StatCard label="In progress" value={inProgress} icon={PlayCircle} iconColor="text-info-600" />
         <StatCard label="Resolved" value={data?.ticketsByStatus.resolved ?? 0} icon={CheckCircle2} iconColor="text-brand-600" />
+        <StatCard label="Authors" value={data?.authors ?? 0} icon={Users} iconColor="text-brand-700" />
+        <StatCard label="Books" value={data?.books ?? 0} icon={BookOpen} iconColor="text-gold-600" />
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {/* Status distribution bar chart */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Tickets by Status</CardTitle>
+            <CardTitle>Tickets by status</CardTitle>
+            <p className="mt-1 text-xs text-muted">Current volume across the support queue</p>
           </CardHeader>
           <CardContent className="pt-0">
-            <div className="h-[240px]">
+            <div className="h-[250px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={statusData} barCategoryGap="20%">
+                <BarChart data={statusData} barCategoryGap="24%" margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke="#e4eae5" strokeDasharray="3 4" />
                   <XAxis
                     dataKey="name"
-                    tick={{ fontSize: 12, fill: "#73736b" }}
+                    tick={{ fontSize: 11, fill: "#6c7971" }}
                     axisLine={false}
                     tickLine={false}
+                    tickMargin={12}
                   />
                   <YAxis
-                    tick={{ fontSize: 12, fill: "#73736b" }}
+                    tick={{ fontSize: 11, fill: "#6c7971" }}
                     axisLine={false}
                     tickLine={false}
                     allowDecimals={false}
+                  />
+                  <Tooltip
+                    cursor={{ fill: "#f8faf8" }}
+                    contentStyle={{
+                      border: "1px solid #e4eae5",
+                      borderRadius: 10,
+                      boxShadow: "0 8px 24px rgb(21 39 29 / 10%)",
+                      fontSize: 12,
+                    }}
                   />
                   <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                     {statusData.map((entry) => (
@@ -117,10 +129,10 @@ export function AdminDashboard() {
           </CardContent>
         </Card>
 
-        {/* Status donut */}
         <Card>
           <CardHeader>
-            <CardTitle>Distribution</CardTitle>
+            <CardTitle>Queue distribution</CardTitle>
+            <p className="mt-1 text-xs text-muted">Tickets grouped by current status</p>
           </CardHeader>
           <CardContent className="pt-0">
             <div className="relative h-[240px]">
@@ -133,11 +145,21 @@ export function AdminDashboard() {
                     innerRadius={60}
                     outerRadius={90}
                     paddingAngle={2}
+                    stroke="white"
+                    strokeWidth={3}
                   >
                     {statusData.map((entry) => (
                       <Cell key={entry.key} fill={PIE_COLORS[entry.key] ?? "#d4d2cc"} />
                     ))}
                   </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      border: "1px solid #e4eae5",
+                      borderRadius: 10,
+                      boxShadow: "0 8px 24px rgb(21 39 29 / 10%)",
+                      fontSize: 12,
+                    }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
@@ -163,16 +185,12 @@ export function AdminDashboard() {
         </Card>
       </div>
 
-      {/* Secondary stats */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <StatCard label="Total Authors" value={data?.authors ?? 0} icon={Users} iconColor="text-brand-700" />
-        <StatCard label="Total Books" value={data?.books ?? 0} icon={BookOpen} iconColor="text-gold-600" />
-      </div>
-
-      {/* Recent activity */}
       <Card>
-        <CardHeader className="flex-row items-center justify-between">
-          <CardTitle>Recent Ticket Activity</CardTitle>
+        <CardHeader className="flex items-center justify-between gap-3">
+          <div>
+            <CardTitle>Recent ticket activity</CardTitle>
+            <p className="mt-1 text-xs text-muted">Latest updates from the support queue</p>
+          </div>
           <Button variant="ghost" size="sm" asChild>
             <Link to="/admin/tickets">View all</Link>
           </Button>

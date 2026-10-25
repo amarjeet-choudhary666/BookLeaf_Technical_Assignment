@@ -86,7 +86,7 @@ export function AdminTickets() {
       />
 
       {/* Filters */}
-      <div className="space-y-3">
+      <div className="space-y-3 rounded-xl border border-border bg-surface p-3 shadow-soft sm:p-4">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <Input
             type="search"
@@ -209,7 +209,7 @@ export function AdminTickets() {
           </p>
           <Card className="overflow-hidden">
             <div className="overflow-x-auto scrollbar-thin">
-              <table className="w-full text-sm">
+              <table className="data-table text-sm">
                 <thead>
                   <tr className="border-b border-border bg-surface-2 text-left text-xs text-muted">
                     <th className="px-4 py-3 font-medium">Ticket #</th>
